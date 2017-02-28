@@ -37,7 +37,7 @@ rhel_iso: iso_creation
 
 .PHONY: iso_creation
 iso_creation: init
-	handle_user_data='$(HANDLE_USER_DATA)' cert_gen='$(CERT_GEN)' version='$(VERSION)' build_id='$(GITTAG)-$(TODAY)-$(BUILD_ID)' \
+	@handle_user_data='$(HANDLE_USER_DATA)' cert_gen='$(CERT_GEN)' version='$(VERSION)' build_id='$(GITTAG)-$(TODAY)-$(BUILD_ID)' \
 			 envsubst < $(KICKSTART_TEMPLATE) > $(BUILD_DIR)/$(KICKSTART_FILE)
 	cd $(BUILD_DIR); sudo livecd-creator --config $(BUILD_DIR)/$(KICKSTART_FILE) --logfile=$(BUILD_DIR)/livecd-creator.log --fslabel $(ISO_NAME)
 	# http://askubuntu.com/questions/153833/why-cant-i-mount-the-ubuntu-12-04-installer-isos-in-mac-os-x
